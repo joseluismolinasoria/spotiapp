@@ -5,26 +5,44 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SpotifyService {
 
+  urlSpotify: string = 'https://api.spotify.com/v1/';
+
   artistas: any[] = [];
 
-  token = 'BQARbMzXo_qmftWbFt5l6JhWEoveyC5wLqk6AJR9LpCTqM-BZZjhVsVE4O0s-x7lmr4m4eR8AqPi0MWCIJIWtw';
+  token: string = 'BQCsbd1JBNjjomILoaMwNn6nPLzrGRIVqX_sMu_mdKG_8E4tLh8RaCu5YVxnWlGwdxfxTArVHBucCISuWDnoeA';
 
   constructor ( public http: HttpClient ) { }
 
-  getArtistas (termino) {
-    let url = `https://api.spotify.com/v1/search?query=${ termino }&type=artist&offset=0&limit=20`;
-
-    let headers = new HttpHeaders( {
-      'authorization' : 'Bearer ' + this.token
+  private headers ():HttpHeaders {
+    return new HttpHeaders( {
+      'authorization' : `Bearer ${ this.token }`
     });
+  }
 
-    return this.http.get(url, { headers })
+  getArtistas (termino) {
+    let url = `${ this.urlSpotify }search?query=${ termino }&type=artist&offset=0&limit=20`;
+
+    return this.http.get(url, { headers: this.headers() })
     .map( (resp:any) => {
       this.artistas = resp.artists.items;
       return this.artistas;
     });
   }
 
+  getArtista ( id: string ) {
+    let url = `${ this.urlSpotify }artists/${ id }`;
+
+    return this.http.get(url, {  headers: this.headers() });
+  }
+
+
+  getTop ( id: string ) {
+    let url = `${ this.urlSpotify }artists/${ id }/top-tracks?country=US`;
+
+    return this.http.get(url, {  headers: this.headers() }).map( (resp:any) => {
+      return resp.tracks;
+    });
+  }
 
   // getTokenSpotify () {
   //   console.log ('getTokenSpotify');
