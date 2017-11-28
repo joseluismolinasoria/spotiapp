@@ -73,3 +73,16 @@ hr{
 .m30 {
   margin: 30px;
 }
+
+.m10 {
+  margin: 10px;
+}
+
+.p10 {
+  padding: 10px;
+}
+
+.img64_64 {
+  height: 64px;
+  width: 64px;
+}
