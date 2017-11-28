@@ -9,11 +9,14 @@ import { FormsModule } from '@angular/forms';
 // services
 import {SpotifyService} from './services/spotify.service';
 
+// pipes
+import { SinfotoPipe } from './pipes/sinfoto.pipe';
+import { DomseguroPipe } from './pipes/domseguro.pipe';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { SinfotoPipe } from './pipes/sinfoto.pipe';
 import { ArtistComponent } from './components/artist/artist.component';
 
 
@@ -21,8 +24,11 @@ import { ArtistComponent } from './components/artist/artist.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    SearchComponent, 
-    NavbarComponent, SinfotoPipe, ArtistComponent
+    SearchComponent,
+    NavbarComponent,
+    SinfotoPipe,
+    DomseguroPipe,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,

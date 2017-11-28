@@ -1,41 +1,49 @@
-<div class="row m30">
-  <div class="col-md-3">
-    <a [href]="artista.external_urls.spotify" class="thumbnail" target="_blank">
-      <img [src]="artista.images | sinfoto" [alt]="artista.name"
-           class="img-thumbnail">
-    </a>
-  </div>
-  <div class="col-md-9">
-    <h1 class="text-center">{{ artista.name }}</h1>
-    <hr>
-    <div class="text-center">
-      Número de seguidores: {{artista.followers.total}}
+<div class="container m30">
+  <div class="row">
+    <div class="col-md-3">
+      <a [href]="artista.external_urls?.spotify" class="thumbnail" target="_blank">
+        <img [src]="artista.images | sinfoto" [alt]="artista.name"
+             class="img-thumbnail">
+      </a>
     </div>
-    <div class="text-center">
-      Generos:
-      <span class="badge badge-dark m10"
-            *ngFor="let genero of artista.genres">{{ genero }}</span>
+    <div class="col-md-9">
+      <h1 class="text-center">{{ artista.name }}</h1>
+      <hr>
+      <div class="text-center">
+        Número de seguidores: {{artista.followers?.total}}
+      </div>
+      <div class="text-center">
+        Generos:
+        <span class="badge badge-dark m10"
+              *ngFor="let genero of artista.genres">{{ genero }}</span>
+      </div>
+      <div class="text-center">
+        Popularidad: {{ artista.popularity }}%
+      </div>
+
     </div>
-    <div class="text-center">
-      Popularidad: {{ artista.popularity }}
+  </div>
+
+  <div class="row m30">
+    <div class="col-md-1">
+
     </div>
-
-  </div>
-</div>
-
-<div class="row m30">
-  <div class="col-md-1">
-
-  </div>
-  <div class="col-md-11" >
-    <ul class="list-unstyled">
-      <li class="media m30" *ngFor="let track of tracks">
-        <img class="mr-3 rounded img-thumbnail img64_64" [src]="track.album.images | sinfoto" alt="imagen">
-        <div class="media-body">
-          <h5 class="mt-0 mb-1">{{ track.name }}</h5>
-          Pista Nº {{ track.track_number }}. Poluplaridad {{ track.popularity }}
-        </div>
-      </li>
-    </ul>
+    <div class="col-md-11" >
+      <ul class="list-unstyled">
+        <li class="media m30" *ngFor="let track of tracks; let i = index;">
+          <img class="mr-3 rounded img-thumbnail img64_64" [src]="track.album.images | sinfoto" alt="imagen">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1">{{ i+1 }}. {{ track.name }}</h5>
+            Pista Nº {{ track.track_number }}. Poluplaridad {{ track.popularity }}%
+            <hr>
+            <iframe [src]="track.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80"
+                    frameborder="0" allowtransparency="true"></iframe>
+            <!-- <audio controls preload="auto" [src]="track.preview_url">
+              Tu navegador no soporta la etiqueta de audio
+            </audio> -->
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

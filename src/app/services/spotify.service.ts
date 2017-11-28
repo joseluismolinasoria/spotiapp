@@ -9,7 +9,7 @@ export class SpotifyService {
 
   artistas: any[] = [];
 
-  token: string = 'BQBbugHS5WwJltVswpL3ZeHSNIr0i2JHbeFNUc3gCD-Hv6yTN3mfionuAt1wMy-Zzk-LDjHeZywWOT6h48vQmA';
+  token: string = 'BQAFDA7BxL13yiZNb2idSDCO0_CK_shfQnC1wp3DXbU0Gberxnzfbr4gNNLTgjxAUFomsR2CXTptC3Rsdu0';
 
   constructor ( public http: HttpClient ) { }
 
